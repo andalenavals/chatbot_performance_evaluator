@@ -12,9 +12,9 @@ Create an isolated environment and install the package in editable mode.
 For OpenAI-backed bots or judges:
 
 .. code-block:: bash
+   
    pip install -e .[dev,openai]
    export OPENAI_API_KEY=your_key_here
-
 
 To build the documentation as well:
 
