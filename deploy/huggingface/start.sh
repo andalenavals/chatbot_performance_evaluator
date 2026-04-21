@@ -4,6 +4,7 @@ set -euo pipefail
 export OLLAMA_HOST="${OLLAMA_HOST:-127.0.0.1:11434}"
 export OLLAMA_MODELS="${OLLAMA_MODELS:-/data/ollama/models}"
 export SPACE_OLLAMA_MODELS="${SPACE_OLLAMA_MODELS:-deepseek-r1:latest qwen3:8b}"
+export PYTHONPATH="/app:/app/src${PYTHONPATH:+:${PYTHONPATH}}"
 
 mkdir -p "${OLLAMA_MODELS}"
 
