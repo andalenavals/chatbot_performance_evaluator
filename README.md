@@ -36,7 +36,7 @@ This project provides a **structured evaluation framework** that answers those q
   - safety
   - relevance
   - faithfulness
-- Track [![Docs]](https://andalenavals.github.io/chatbot_performance_evaluator/metrics.html) per question
+- Track [metrics](https://andalenavals.github.io/chatbot_performance_evaluator/metrics.html#deterministic-metrics) per question
 
 ---
 
