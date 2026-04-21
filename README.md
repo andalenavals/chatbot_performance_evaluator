@@ -117,13 +117,9 @@ streamlit run app/main.py
 - Bot prompt files live in `configs/bots/prompts/`
 - Judge prompt files live in `configs/judges/prompts/`
 - Judge configs default to `deepseek-r1`
-- If a judge config points to OpenAI but the API key is unavailable, the builder falls back to the default local DeepSeek judge model
 
 ## Documentation
 
-Build the docs locally:
+Full documentation is available here:
 
-```bash
-pip install -e .[docs]
-sphinx-build -b html docs docs/_build/html
-```
+[![Docs](https://img.shields.io/badge/docs-online-blue)](https://andalenavals.github.io/chatbot_performance_evaluator/overview.html)
