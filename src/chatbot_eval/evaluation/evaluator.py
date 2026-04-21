@@ -1,17 +1,22 @@
 from __future__ import annotations
 
+"""Evaluation orchestration for per-row scoring and aggregate runs."""
+
 import json
 from dataclasses import dataclass
 from time import perf_counter
+from typing import Any
 
-from chatbot_eval.types import BotResult, Sample
+from chatbot_eval.types import Sample
 
 
 @dataclass(slots=True)
 class Evaluator:
+    """Evaluate bots against samples and collect row-level outputs."""
+
     metrics: list[object]
 
-    def evaluate_sample(self, sample: Sample, bot) -> dict:
+    def evaluate_sample(self, sample: Sample, bot: Any) -> dict[str, str]:
         metric_values: dict[str, float] = {}
         metric_details: dict[str, dict] = {}
         started = perf_counter()
@@ -25,8 +30,9 @@ class Evaluator:
                     metric_values[result.name] = result.score
                     metric_details[result.name] = result.details
                 except Exception as exc:
-                    metric_values[getattr(metric, 'name', metric.__class__.__name__)] = 0.0
-                    metric_details[getattr(metric, 'name', metric.__class__.__name__)] = {'error': str(exc)}
+                    name = getattr(metric, 'name', metric.__class__.__name__)
+                    metric_values[name] = 0.0
+                    metric_details[name] = {'error': str(exc)}
             generated_answer = bot_result.answer
             bot_metadata = bot_result.metadata
         except Exception as exc:
@@ -44,8 +50,10 @@ class Evaluator:
             'bot_metadata_json': json.dumps(bot_metadata, ensure_ascii=False),
         }
 
-    def evaluate_dataset(self, samples: list[Sample], bots: list[object]) -> list[dict]:
-        rows: list[dict] = []
+    def evaluate_dataset(self, samples: list[Sample], bots: list[object]) -> list[dict[str, str]]:
+        """Evaluate all ``bots`` against all ``samples``."""
+
+        rows: list[dict[str, str]] = []
         for bot in bots:
             for sample in samples:
                 rows.append(self.evaluate_sample(sample, bot))

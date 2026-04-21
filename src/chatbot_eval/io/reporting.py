@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+"""Reporting utilities for row-level results and aggregate summaries."""
+
 import csv
 import json
 from pathlib import Path
 
 
 def write_rows_csv(rows: list[dict], path: str | Path) -> None:
+    """Persist evaluation rows to CSV."""
+
     if not rows:
         return
     out = Path(path)
@@ -18,6 +22,8 @@ def write_rows_csv(rows: list[dict], path: str | Path) -> None:
 
 
 def write_rows_jsonl(rows: list[dict], path: str | Path) -> None:
+    """Persist evaluation rows to JSON Lines."""
+
     out = Path(path)
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, 'w', encoding='utf-8') as handle:
@@ -26,6 +32,8 @@ def write_rows_jsonl(rows: list[dict], path: str | Path) -> None:
 
 
 def summarize_by_bot(rows: list[dict]) -> list[dict]:
+    """Average numeric metrics per bot across all rows."""
+
     groups: dict[str, dict[str, list[float]]] = {}
     for row in rows:
         bot = row['bot_name']

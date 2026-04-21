@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+"""Configuration models for provider-specific LLM settings."""
+
 from dataclasses import dataclass, field
 from typing import Any
 
 
 @dataclass(slots=True)
 class ModelConfig:
+    """Configuration for a single provider-backed model."""
+
     name: str
     provider: str
     model: str

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""Deterministic FAQ matcher based on cosine overlap of token sets."""
+
 from dataclasses import dataclass
 from math import sqrt
 from pathlib import Path
@@ -10,10 +12,14 @@ from chatbot_eval.types import BotResult, Sample
 
 
 def _tokenize(text: str) -> set[str]:
+    """Tokenize text into a lower-cased set with light punctuation stripping."""
+
     return {token.strip(".,!?;:()[]{}\"'").lower() for token in text.split() if token.strip()}
 
 
 def _cosine_overlap(a: str, b: str) -> float:
+    """Return cosine similarity over binary bag-of-words vectors."""
+
     ta = _tokenize(a)
     tb = _tokenize(b)
     if not ta or not tb:
@@ -29,6 +35,8 @@ def _cosine_overlap(a: str, b: str) -> float:
 
 @dataclass(slots=True)
 class StrictSemanticMatchBot(BaseBot):
+    """Return the answer from the most similar FAQ question without generation."""
+
     name: str
     faq_csv_path: str | Path
 
@@ -42,4 +50,12 @@ class StrictSemanticMatchBot(BaseBot):
                 best_score = score
                 best_sample = sample
         answer = best_sample.expected_answer if best_sample else ''
-        return BotResult(answer=answer, metadata={'bot_type': 'strict_semantic_match', 'faq_csv_path': str(self.faq_csv_path), 'matched_question': best_sample.question if best_sample else None, 'similarity': round(best_score, 4) if best_sample else None})
+        return BotResult(
+            answer=answer,
+            metadata={
+                'bot_type': 'strict_semantic_match',
+                'faq_csv_path': str(self.faq_csv_path),
+                'matched_question': best_sample.question if best_sample else None,
+                'similarity': round(best_score, 4) if best_sample else None,
+            },
+        )

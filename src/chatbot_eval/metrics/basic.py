@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""Deterministic baseline metrics used by the evaluator."""
+
 import re
 from dataclasses import dataclass
 
@@ -16,6 +18,8 @@ def _tokens(text: str) -> set[str]:
 
 @dataclass(slots=True)
 class ExactMatchMetric:
+    """Binary exact-match score after simple normalization."""
+
     name: str = 'exact_match'
 
     def score(self, sample: Sample, bot_result: BotResult) -> MetricResult:
@@ -25,6 +29,8 @@ class ExactMatchMetric:
 
 @dataclass(slots=True)
 class KeywordRecallMetric:
+    """Recall of expected-answer tokens present in the generated answer."""
+
     name: str = 'keyword_recall'
 
     def score(self, sample: Sample, bot_result: BotResult) -> MetricResult:
@@ -36,6 +42,8 @@ class KeywordRecallMetric:
 
 @dataclass(slots=True)
 class AnswerLengthMetric:
+    """Character length of the answer as a communication proxy."""
+
     name: str = 'answer_length_chars'
 
     def score(self, sample: Sample, bot_result: BotResult) -> MetricResult:
@@ -44,6 +52,8 @@ class AnswerLengthMetric:
 
 @dataclass(slots=True)
 class PolitenessMetric:
+    """Simple heuristic scoring polite or helpful markers in the answer."""
+
     name: str = 'politeness'
 
     def score(self, sample: Sample, bot_result: BotResult) -> MetricResult:

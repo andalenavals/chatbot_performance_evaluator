@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""Ollama chat client wrapper."""
+
 from dataclasses import dataclass, field
 from typing import Any, Dict
 
@@ -10,6 +12,8 @@ from chatbot_eval.types import Completion
 
 @dataclass(slots=True)
 class OllamaChatClient:
+    """Thin wrapper around the Ollama ``/api/chat`` endpoint."""
+
     model: str
     base_url: str = 'http://localhost:11434'
     temperature: float = 0.0

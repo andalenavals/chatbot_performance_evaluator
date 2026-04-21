@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""OpenAI-compatible chat client wrapper."""
+
 from dataclasses import dataclass, field
 from typing import Any, Dict
 
@@ -10,6 +12,8 @@ from chatbot_eval.types import Completion
 
 @dataclass(slots=True)
 class OpenAIChatClient:
+    """Wrapper around the OpenAI chat completions endpoint."""
+
     model: str
     api_key: str
     base_url: str = 'https://api.openai.com/v1'
@@ -25,7 +29,12 @@ class OpenAIChatClient:
             'temperature': self.temperature,
         }
         payload.update(self.request_kwargs)
-        response = requests.post(url, headers={'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}, json=payload, timeout=self.timeout)
+        response = requests.post(
+            url,
+            headers={'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'},
+            json=payload,
+            timeout=self.timeout,
+        )
         if not response.ok:
             raise RuntimeError(
                 f'OpenAI request failed: status={response.status_code}, model={self.model}, body={response.text}'

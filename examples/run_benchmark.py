@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""CLI entry point for running all configured bots against a FAQ CSV file."""
+
 import argparse
 from pathlib import Path
 

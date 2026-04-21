@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""Streamlit application for chatting with bots and inspecting evaluation rows."""
+
 import json
 from pathlib import Path
 
@@ -36,8 +38,11 @@ def get_text_files() -> list[Path]:
 
 
 def main() -> None:
+    """Run the Streamlit application."""
+
     st.set_page_config(layout='wide', page_title='Chatbot Evaluator')
     st.title('Chatbot Evaluator')
+    st.caption('Benchmark full-context and strict semantic-match chatbot variants against FAQ datasets.')
 
     bot_configs = get_bot_configs()
     csv_files = get_csv_files()
@@ -59,7 +64,14 @@ def main() -> None:
         question = st.text_area('Ask the bot something', height=120)
         if st.button('Send', use_container_width=True) and question.strip():
             try:
-                bot = build_bot_with_runtime_files(PROJECT_ROOT, selected_bot, selected_csv, selected_domain, uploaded_csv, uploaded_domain)
+                bot = build_bot_with_runtime_files(
+                    PROJECT_ROOT,
+                    selected_bot,
+                    selected_csv,
+                    selected_domain,
+                    uploaded_csv,
+                    uploaded_domain,
+                )
                 result = bot.answer(question.strip())
                 st.markdown('**Answer**')
                 st.write(result.answer)
@@ -83,7 +95,14 @@ def main() -> None:
             st.markdown('**Expected answer**')
             st.write(sample.expected_answer)
 
-            bot = build_bot_with_runtime_files(PROJECT_ROOT, selected_bot, selected_csv, selected_domain, uploaded_csv, uploaded_domain)
+            bot = build_bot_with_runtime_files(
+                PROJECT_ROOT,
+                selected_bot,
+                selected_csv,
+                selected_domain,
+                uploaded_csv,
+                uploaded_domain,
+            )
             metrics = build_default_metrics(PROJECT_ROOT)
             evaluator = Evaluator(metrics=metrics)
             row = evaluator.evaluate_sample(sample, bot)
@@ -95,6 +114,8 @@ def main() -> None:
             if show_debug:
                 st.markdown('**Metric details**')
                 st.json(json.loads(row['metric_details_json']))
+                st.markdown('**Bot metadata**')
+                st.json(json.loads(row['bot_metadata_json']))
         except Exception as exc:  # pragma: no cover - UI guard
             st.error(str(exc))
 

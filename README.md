@@ -1,21 +1,14 @@
 # Chatbot Performance Evaluator
 
-A modular Python project for comparing chatbots that take text in and return text out.
+A modular framework for validating chatbots against FAQ-style datasets.
 
-## Current chatbot types
+The project compares two bot strategies:
+- **full-context prompting**, where an LLM answers using a shared domain-knowledge file
+- **strict semantic match**, where the system retrieves the answer attached to the most similar FAQ question
 
-- **Full context bot**: injects the entire domain knowledge file into the prompt.
-- **Strict semantic match bot**: finds the most similar question in the FAQ set and returns its expected answer without generation.
+It records row-level outputs, deterministic metrics, and LLM-as-a-judge metrics, then exposes the results through CSV, JSONL, and a Streamlit inspection app.
 
-## Features
-
-- FAQ input from CSV with `question` and `expected_answer`
-- per-row metric storage in CSV and JSONL
-- configurable LLM-as-judge metrics
-- Streamlit app for chatting and inspecting benchmark rows
-- Sphinx documentation and GitHub Pages workflow
-
-## Quick start
+## Quickstart
 
 ```bash
 python -m venv .venv
@@ -23,4 +16,13 @@ source .venv/bin/activate
 pip install -e .[dev]
 python examples/run_benchmark.py
 streamlit run app/main.py
+```
+
+## Documentation
+
+Build the docs locally:
+
+```bash
+pip install -e .[docs]
+sphinx-build -b html docs docs/_build/html
 ```

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chatbot-performance-evaluator"
-version = "0.1.0"
+version = "0.2.0"
 description = "Evaluate text-in/text-out chatbot variants with deterministic metrics and LLM-as-judge metrics."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -20,7 +20,7 @@ dev = [
 ]
 docs = [
   "sphinx>=7.4.0",
-  "furo>=2024.8.6",
+  "sphinx-rtd-theme>=2.0.0",
 ]
 
 [tool.setuptools]
@@ -30,5 +30,5 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 testpaths = ["tests"]
