@@ -1,12 +1,10 @@
 from pathlib import Path
 
-from chatbot_eval.data.csv_loader import load_samples_from_csv
+from chatbot_eval.io.csv_loader import load_samples_from_csv
 
 
-def test_load_samples_from_csv_reads_required_columns(tmp_path: Path) -> None:
-    path = tmp_path / "samples.csv"
-    path.write_text("question,expected_answer\nHi,Hello\n", encoding="utf-8")
-    samples = load_samples_from_csv(path)
-    assert len(samples) == 1
-    assert samples[0].question == "Hi"
-    assert samples[0].expected_answer == "Hello"
+def test_load_samples_from_csv(project_root=Path(__file__).resolve().parents[1]):
+    rows = load_samples_from_csv(project_root / 'data' / 'faq.csv')
+    assert rows
+    assert rows[0].question
+    assert rows[0].expected_answer

@@ -1,5 +1,0 @@
-row_id,question,expected_answer
-1,When is premium support available?,Premium support is available Monday to Friday from 09:00 to 18:00 CET.
-2,How can a user reset a password?,Users can reset their password from the account settings page.
-3,Does the Standard plan include API access?,No. API access is included only in the Business plan.
-4,What happens when an annual plan is cancelled?,It remains active until the end of the paid period.

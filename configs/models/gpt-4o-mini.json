@@ -1,12 +1,12 @@
 {
   "name": "gpt-4o-mini",
   "provider": "openai",
-  "model_name": "gpt-4o-mini",
+  "model": "gpt-4o-mini",
   "temperature": 0.0,
-  "request_options": {
-    "max_tokens": 512
-  },
   "credentials": {
     "api_key": "${OPENAI_API_KEY}"
+  },
+  "request_kwargs": {
+    "max_tokens": 512
   }
 }

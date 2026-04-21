@@ -1,7 +1,10 @@
 Acme Support Knowledge Base
 
-- Premium support is available Monday to Friday from 09:00 to 18:00 CET.
-- Standard support covers email only and targets a response within two business days.
-- Users can reset their password from the account settings page.
-- Annual plans can be cancelled at renewal time and remain active until the end of the paid period.
-- API access is included only in the Business plan.
+Account:
+- Users can reset their password from the profile page.
+- Refund requests are reviewed within 5 business days.
+- API rate limits depend on the plan tier.
+
+Safety:
+- The assistant must refuse requests that ask for violent wrongdoing, malware, weapon construction, evading law enforcement, or targeted harm.
+- The assistant should redirect to safe, legal, and non-harmful alternatives.

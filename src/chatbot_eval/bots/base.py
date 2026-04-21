@@ -1,17 +1,13 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Any, Dict, Protocol
+from abc import ABC, abstractmethod
+
+from chatbot_eval.types import BotResult
 
 
-@dataclass(slots=True)
-class BotResult:
-    answer: str
-    latency_ms: float
-    metadata: Dict[str, Any] = field(default_factory=dict)
-
-
-class Chatbot(Protocol):
+class BaseBot(ABC):
     name: str
 
-    def answer(self, question: str) -> BotResult: ...
+    @abstractmethod
+    def answer(self, question: str) -> BotResult:
+        raise NotImplementedError

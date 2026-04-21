@@ -1,7 +1,6 @@
 {
   "name": "full_context_gpt4o_mini",
-  "bot_type": "full_context",
-  "chat_model_config": "models/gpt-4o-mini.json",
-  "prompt_path": "bots/prompts/full_context_prompt.txt",
-  "domain_knowledge_path": "../data/domain_knowledge.txt"
+  "type": "full_context",
+  "model_config": "configs/models/gpt-4o-mini.json",
+  "prompt_path": "configs/bots/prompts/full_context_prompt.txt"
 }

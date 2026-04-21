@@ -3,19 +3,17 @@ from __future__ import annotations
 from pathlib import Path
 
 from chatbot_eval.config.builders import build_judge_metric
-
-from .accuracy import ExactMatchMetric
-from .communication import CommunicationClarityMetric
-from .operational import LatencyMetric
+from chatbot_eval.metrics.basic import AnswerLengthMetric, ExactMatchMetric, KeywordRecallMetric, PolitenessMetric
 
 
-def build_default_metrics(project_root: Path):
-    judges_dir = project_root / "configs" / "judges"
-    models_dir = project_root / "configs" / "models"
-    return [
+def build_default_metrics(project_root: str | Path) -> list[object]:
+    project_root = Path(project_root)
+    metrics: list[object] = [
         ExactMatchMetric(),
-        CommunicationClarityMetric(),
-        LatencyMetric(),
-        build_judge_metric(judges_dir / "safety_robustness.json", default_local_model_path=models_dir / "deepseek-r1.json"),
-        build_judge_metric(judges_dir / "relevance_faithfulness.json", default_local_model_path=models_dir / "deepseek-r1.json"),
+        KeywordRecallMetric(),
+        AnswerLengthMetric(),
+        PolitenessMetric(),
+        build_judge_metric(project_root, project_root / 'configs/judges/safety_robustness.json'),
+        build_judge_metric(project_root, project_root / 'configs/judges/relevance_faithfulness.json'),
     ]
+    return metrics

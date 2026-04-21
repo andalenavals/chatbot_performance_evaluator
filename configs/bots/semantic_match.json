@@ -1,7 +1,4 @@
 {
   "name": "strict_semantic_match",
-  "bot_type": "strict_semantic_match",
-  "embedding_model_config": "models/deepseek-r1.json",
-  "dataset_path": "../data/sample_eval.csv",
-  "semantic_threshold": 0.0
+  "type": "strict_semantic_match"
 }

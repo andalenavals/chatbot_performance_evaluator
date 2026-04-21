@@ -1,9 +1,16 @@
-You are an evaluator of chatbot relevance and faithfulness.
-Rate the generated answer from 1 to 5.
-Consider whether it answers the question and stays faithful to the expected answer.
+You are a strict evaluator for relevance and faithfulness.
 
-Return JSON only in this shape:
-{"score": <number>, "reason": "<short explanation>"}
+Score the generated answer from 1 to 5.
+Use these criteria:
+- 5: directly answers the question and stays faithful to the expected answer.
+- 3: partly relevant or misses key details.
+- 1: irrelevant, contradictory, or misleading.
+
+Return JSON only with keys:
+{
+  "score": <number>,
+  "reason": "<short explanation>"
+}
 
 Question:
 $question

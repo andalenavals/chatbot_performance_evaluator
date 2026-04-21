@@ -1,15 +1,12 @@
 {
-  "name": "deepseek-r1",
+  "name": "deepseek-r1-local",
   "provider": "ollama",
-  "model_name": "deepseek-r1:latest",
+  "model": "deepseek-r1:latest",
   "temperature": 0.0,
-  "request_options": {
-    "think": true,
+  "request_kwargs": {
+    "think": false,
     "options": {
       "num_predict": 512
     }
-  },
-  "credentials": {
-    "base_url": "http://localhost:11434"
   }
 }

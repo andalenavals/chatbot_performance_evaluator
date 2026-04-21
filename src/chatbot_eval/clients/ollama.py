@@ -1,63 +1,39 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Dict
 
 import requests
 
-from chatbot_eval.config.schema import ModelConfig
-from .base import ChatCompletion
+from chatbot_eval.types import Completion
 
 
 @dataclass(slots=True)
 class OllamaChatClient:
-    model_config: ModelConfig
-    base_url: str = "http://localhost:11434"
+    model: str
+    base_url: str = 'http://localhost:11434'
+    temperature: float = 0.0
+    request_kwargs: dict[str, Any] = field(default_factory=dict)
     timeout: int = 300
 
-    def generate(self, prompt: str, *, system_prompt: str | None = None) -> ChatCompletion:
+    def generate(self, prompt: str) -> Completion:
+        url = f"{self.base_url.rstrip('/')}/api/chat"
         payload: Dict[str, Any] = {
-            "model": self.model_config.model_name,
-            "stream": False,
-            "messages": [],
+            'model': self.model,
+            'messages': [{'role': 'user', 'content': prompt}],
+            'stream': False,
+            'options': {'temperature': self.temperature},
         }
-        if system_prompt:
-            payload["messages"].append({"role": "system", "content": system_prompt})
-        payload["messages"].append({"role": "user", "content": prompt})
-        payload.update(self.model_config.request_payload())
-
-        response = requests.post(
-            f"{self.base_url.rstrip('/')}/api/chat",
-            json=payload,
-            timeout=self.timeout,
-        )
-        response.raise_for_status()
+        for key, value in self.request_kwargs.items():
+            if key == 'options' and isinstance(value, dict):
+                payload['options'].update(value)
+            else:
+                payload[key] = value
+        response = requests.post(url, json=payload, timeout=self.timeout)
+        if not response.ok:
+            raise RuntimeError(
+                f'Ollama request failed: status={response.status_code}, model={self.model}, url={url}, body={response.text}'
+            )
         data = response.json()
-        message = data.get("message", {})
-        return ChatCompletion(
-            text=message.get("content", "").strip(),
-            thinking=(message.get("thinking") or "").strip() or None,
-            raw=data,
-        )
-
-
-@dataclass(slots=True)
-class OllamaEmbeddingClient:
-    model_config: ModelConfig
-    base_url: str = "http://localhost:11434"
-    timeout: int = 300
-
-    def embed_texts(self, texts: list[str]) -> list[list[float]]:
-        payload: Dict[str, Any] = {
-            "model": self.model_config.model_name,
-            "input": texts,
-        }
-        payload.update(self.model_config.request_payload())
-        response = requests.post(
-            f"{self.base_url.rstrip('/')}/api/embed",
-            json=payload,
-            timeout=self.timeout,
-        )
-        response.raise_for_status()
-        data = response.json()
-        return data.get("embeddings", [])
+        message = data.get('message', {})
+        return Completion(text=message.get('content', '') or '', thinking=message.get('thinking'), raw=data)

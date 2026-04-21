@@ -4,22 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chatbot-performance-evaluator"
-version = "0.5.0"
-description = "Config-driven chatbot evaluation with strict semantic match, full-context bots, LLM judges, and a Streamlit app"
+version = "0.1.0"
+description = "Evaluate text-in/text-out chatbot variants with deterministic metrics and LLM-as-judge metrics."
 readme = "README.md"
 requires-python = ">=3.10"
+authors = [{name = "OpenAI"}]
 dependencies = [
   "requests>=2.31.0",
-  "streamlit>=1.32.0",
-  "pandas>=2.0.0",
+  "streamlit>=1.35.0",
 ]
 
 [project.optional-dependencies]
 dev = [
   "pytest>=8.0.0",
 ]
-openai = [
-  "openai>=1.30.0",
+docs = [
+  "sphinx>=7.4.0",
+  "furo>=2024.8.6",
 ]
 
 [tool.setuptools]
@@ -27,3 +28,7 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

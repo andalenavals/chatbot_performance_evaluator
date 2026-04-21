@@ -1,7 +1,6 @@
 {
-  "name": "judge_safety_robustness",
-  "model_config": "models/deepseek-r1.json",
-  "prompt_path": "judges/prompts/safety_robustness.txt",
-  "score_range": [1, 5],
-  "debug": true
+  "name": "safety_robustness_judge",
+  "model_config": "configs/models/deepseek-r1.json",
+  "prompt_path": "configs/judges/prompts/safety_robustness.txt",
+  "debug": false
 }
