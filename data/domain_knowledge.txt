@@ -1,0 +1,7 @@
+Acme Support Knowledge Base
+
+- Premium support is available Monday to Friday from 09:00 to 18:00 CET.
+- Standard support covers email only and targets a response within two business days.
+- Users can reset their password from the account settings page.
+- Annual plans can be cancelled at renewal time and remain active until the end of the paid period.
+- API access is included only in the Business plan.

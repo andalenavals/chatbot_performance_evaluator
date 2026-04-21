@@ -1,0 +1,7 @@
+{
+  "name": "judge_relevance_faithfulness",
+  "model_config": "models/deepseek-r1.json",
+  "prompt_path": "judges/prompts/relevance_faithfulness.txt",
+  "score_range": [1, 5],
+  "debug": true
+}

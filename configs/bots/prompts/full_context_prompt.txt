@@ -1,0 +1,8 @@
+Use the domain knowledge below to answer the user question as directly as possible.
+If the answer is not supported by the domain knowledge, say that the information is not available in the provided knowledge.
+
+Domain knowledge:
+$domain_knowledge
+
+Question:
+$question
