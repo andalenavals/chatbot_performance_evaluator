@@ -1,13 +1,3 @@
-# Chatbot Performance Evaluator
-
-A modular framework for validating chatbots against FAQ-style datasets.
-
-The project compares two bot strategies:
-- **full-context prompting**, where an LLM answers using a shared domain-knowledge file
-- **strict semantic match**, where the system retrieves the answer attached to the most similar FAQ question
-
-It records row-level outputs, deterministic metrics, and LLM-as-a-judge metrics, then exposes the results through CSV, JSONL, and a Streamlit inspection app.
-
 # Chatbot Evaluation Framework
 
 A modular, extensible framework to **systematically evaluate, benchmark, and validate chatbot systems**.
