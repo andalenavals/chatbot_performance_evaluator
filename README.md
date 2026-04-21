@@ -1,3 +1,13 @@
+---
+title: Chatbot Performance Evaluator
+emoji: 🧪
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Chatbot Evaluation Framework
 
 A modular, extensible framework to **systematically evaluate, benchmark, and validate chatbot systems**.
@@ -8,6 +18,19 @@ A modular, extensible framework to **systematically evaluate, benchmark, and val
 Full documentation is available here:
 
 [![Docs](https://img.shields.io/badge/docs-online-blue)](https://andalenavals.github.io/chatbot_performance_evaluator/overview.html)
+
+## Live demo
+
+Try the hosted Streamlit demo on Hugging Face Spaces:
+
+[![Hugging Face Space](https://img.shields.io/badge/demo-Hugging%20Face%20Spaces-yellow)](https://andalenavals-chatbot-performance-evaluator.hf.space)
+
+The Docker Space starts Ollama inside the container and prepares the local models used by the bundled configs:
+
+- `deepseek-r1:latest`
+- `qwen3:8b`
+
+The free Hugging Face CPU tier can be slow on first load because the Space has to start Ollama and prepare the model cache. For the best demo experience, use short questions and one Ollama-backed bot at a time.
 
 
 ## 🚀 Why this project?
