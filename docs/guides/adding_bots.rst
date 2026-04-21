@@ -3,6 +3,11 @@ Adding a New Bot
 
 Bots are abstractions that take text input and return text output.
 
+Modern LLMs context window are large enough for most FAQ augmented files. Therefore the two predefined types `full_context` and `strict_semantic_match` are more than enough for most applications. Vanilla bots therefore will just change the ``configs/bots/`` folder including a configuration file that requires a model and a prompt.
+
+In case the domain knowledge is too large a combination of the two types might be neeeded, i.e., a RAG bot. For implementing a RAG bot or another more sophisticated system consider the following.
+
+
 All bots must implement the interface:
 
 .. code-block:: python

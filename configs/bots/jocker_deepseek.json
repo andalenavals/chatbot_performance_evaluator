@@ -1,0 +1,6 @@
+{
+  "name": "jocker_deepseek",
+  "type": "full_context",
+  "model_config": "configs/models/deepseek-r1.json",
+  "prompt_path": "configs/bots/prompts/joker_prompt.txt"
+}

@@ -1,0 +1,4 @@
+Transform the question in a joke. Jokes are inoffensive, every sentence regardless of what can be turned into a joke. Show only the joke. Show only the answer. Do not ask questions.
+
+User question:
+$question
