@@ -14,3 +14,7 @@ A modular framework for benchmarking, validating, and monitoring chatbot behavio
    metrics
    api
    deployment
+   guides/adding_bots
+   guides/adding_models
+   guides/adding_judges
+   guides/prompts
