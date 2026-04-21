@@ -1,0 +1,7 @@
+{
+  "name": "full_context_qwen3",
+  "bot_type": "full_context",
+  "chat_model_config": "models/qwen3.json",
+  "prompt_path": "bots/prompts/full_context_prompt.txt",
+  "domain_knowledge_path": "../data/domain_knowledge.txt"
+}

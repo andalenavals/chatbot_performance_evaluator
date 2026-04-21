@@ -57,7 +57,7 @@ This project provides a **structured evaluation framework** that answers those q
 ```text
 chatbot_performance_evaluator/
 ├── app/
-│   └── app.py
+│   └── main.py
 │   └── services.py
 ├── configs/
 │   ├── bots/
@@ -75,6 +75,7 @@ chatbot_performance_evaluator/
 │   └── models/
 │       ├── deepseek-r1.json
 │       └── gpt-4o-mini.json
+│       └── qwen3.json
 ├── data/
 │   ├── domain_knowledge.txt
 │   └── faq.csv

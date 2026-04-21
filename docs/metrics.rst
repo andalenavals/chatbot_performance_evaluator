@@ -12,13 +12,13 @@ Let
 
 .. math::
 
-   T(q) = 	ext{token set of question } q
+   T(q) = 	\text{token set of question } q
 
 For an input question :math:`q` and a candidate FAQ question :math:`q_i`, the system builds binary vectors over the union vocabulary
 
 .. math::
 
-   V = T(q) \\cup T(q_i)
+   V = T(q) \cup T(q_i)
 
 and then assigns
 
