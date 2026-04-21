@@ -1,6 +1,8 @@
 Overview
 ========
 
+[Github repo](https://github.com/andalenavals/chatbot_performance_evaluator/)
+
 Why this project exists
 -----------------------
 

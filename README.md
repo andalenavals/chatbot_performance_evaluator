@@ -13,6 +13,12 @@ It records row-level outputs, deterministic metrics, and LLM-as-a-judge metrics,
 A modular, extensible framework to **systematically evaluate, benchmark, and validate chatbot systems**.
 
 ---
+## Documentation
+
+Full documentation is available here:
+
+[![Docs](https://img.shields.io/badge/docs-online-blue)](https://andalenavals.github.io/chatbot_performance_evaluator/overview.html)
+
 
 ## 🚀 Why this project?
 
@@ -117,9 +123,3 @@ streamlit run app/main.py
 - Bot prompt files live in `configs/bots/prompts/`
 - Judge prompt files live in `configs/judges/prompts/`
 - Judge configs default to `deepseek-r1`
-
-## Documentation
-
-Full documentation is available here:
-
-[![Docs](https://img.shields.io/badge/docs-online-blue)](https://andalenavals.github.io/chatbot_performance_evaluator/overview.html)
