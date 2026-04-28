@@ -3,7 +3,9 @@ Chatbot Performance Evaluator
 
 A modular framework for benchmarking, validating, and monitoring chatbot behavior.
 
-**Github repo** `<https://github.com/andalenavals/chatbot_performance_evaluator/>`_
+Project links:
+
+* `GitHub repository <https://github.com/andalenavals/chatbot_performance_evaluator/>`_
 
 
 .. toctree::
